@@ -1,0 +1,58 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    {# 网页图标 #}
+    <link href="/static/image/favicon.ico" rel="shortcut icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {#   网页标题    #}
+    <title>{% block title %}高考推荐系统{% endblock %}</title>
+    <link href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    {#  网页样式   #}
+    {% block css %}{% endblock %}
+  </head>
+
+   {# 导航栏 #}
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my-nav" aria-expanded="false">
+            <span class="sr-only">切换导航条</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">高考推荐系统</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="my-nav">
+          <ul class="nav navbar-nav">
+              <li class="active"><a href="/student_info">个人信息</a></li>
+              <li class="active"><a href="/mbti/">MBTI测试</a></li>
+              <li class="active"><a href="/school_info">普通院校信息查询</a></li>
+              <li class="active"><a href="/recommend_school/">学校推荐</a></li>
+              <li class="active"><a href="/recommend_profession/">专业推荐</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              {% if request.session.is_login %}
+                  <li><a href="/student_info">用户名：{{ request.session.username }}</a></li>
+                  <li><a href="/logout">登出</a></li>
+              {% else %}
+                  <li><a href="/login">登录</a></li>
+                  <li><a href="/register/">注册</a></li>
+              {% endif %}
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    {# 网页内容 #}
+    {% block content %}{% endblock %}
+
+    <script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+    <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+{# 继承 base.html #}
+{% extends "base.html" %}
+
+{# 替换title #}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+
+{# 替换内容 #}
+{% block content %}
+     <div class="container">
+        <div class="col-md-4 col-md-offset-4">
+          <form class='form-register' action="" method="post">
+              {% if error %}
+                  <div class="alert alert-warning">{{ error }}</div>
+              {% endif %}
+
+              <h2 class="text-center">登录</h2>
+                {% for item in login_form %}
+                    <div class="form-group">
+                        {{ item.label_tag }}
+                        {{ item }}
+                    </div>
+                {% endfor %}
+              <button type="submit" class="btn btn-primary pull-right">登录</button>
+          </form>
+        </div>
+    </div>
+{% endblock %}
