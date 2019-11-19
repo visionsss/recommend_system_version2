@@ -21,7 +21,7 @@ class User(models.Model):
     province = models.CharField(max_length=64, choices=province_gender, default="GuangDong")
     subject = models.CharField(max_length=64, choices=subject_gender, default="science")
     score = models.IntegerField(default=0)
-    mbti = models.CharField(max_length=32, default=0)
+    personality_type = models.CharField(max_length=32, default=0)
     c_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

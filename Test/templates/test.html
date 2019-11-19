@@ -1,0 +1,36 @@
+{# 继承 base.html #}
+{% extends "base.html" %}
+
+{# 替换title #}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+
+{# 替换内容 #}
+{% block content %}
+    <div class="container">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="row" >
+                <div class="col-md-10 col-md-offset-0 add-row"
+                style="background-color: #dedef8;box-shadow:
+                inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+                <p>{{ question.question }}</p>
+                </div>
+            </div>
+                     <br/>
+            <div class="row" >
+            <a href="{% url 'test' num answer_yes%}">
+            <button type="button" class="btn btn-primary btn-lg">
+            <span class="glyphicon glyphicon-pencil"></span> 是
+            </button>
+            </a>
+            <a href="{% url 'test' num answer_no%}">
+            <button type="button" class="btn btn-primary btn-lg">
+            <span class="glyphicon glyphicon-pencil"></span> 否
+            </button>
+            </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
