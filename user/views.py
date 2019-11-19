@@ -22,6 +22,8 @@ def login(request):
             user = login_form.cleaned_data  # 清理数据
             request.session['is_login'] = True
             request.session['username'] = user['username']
+            request.session['school_name'] = ''
+            request.session['province'] = ''
             return redirect('/')
         else:
             # 获取全局的error信息,只显示第一个

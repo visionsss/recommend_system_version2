@@ -1,0 +1,80 @@
+{# 继承 base.html #}
+{% extends "base.html" %}
+
+{# 替换title #}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+
+{# 替换内容 #}
+{% block content %}
+<div class="col-sm-offset-1" style="width: 80%">
+<div id="select_school">
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {% for foo in school_form %}
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{ foo.label }}</label>
+                {{ foo }}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary pull-left">提交</button>
+    </form>
+</div>
+<table class="table table-bordered table-hover table-striped ">
+    <tr><th>院校名称</th><th>院校排名</th><th>省份</th><th>城市</th><th>985</th><th>211</th><th>自招</th>
+    <th>院校隶属</th><th>院校举办</th><th>办学类型</th></tr>
+    {% for school in school_list %}
+    <tr>
+        <td><a href="/school_info/{{ school.school_name }}">{{ school.school_name }}</a></td>
+        <td>{{ school.school_rank }}</td>
+        <td>{{ school.school_province }}</td>
+        <td>{{ school.school_city }}</td>
+        <td>{{ school.type_985 }}</td>
+        <td>{{ school.type_211 }}</td>
+        <td>{{ school.type_self }}</td>
+        <td>{{ school.school_belong }}</td>
+        <td>{{ school.school_type1 }}</td>
+        <td>{{ school.school_type2 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{#翻页按钮#}
+<div class="col-sm-offset-2">
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    {#  第一页  #}
+  <li><a href="?page=1" aria-label="Previous"><span aria-hidden="true">第一页</span></a></li>
+{#    上一页    #}
+      {% if school_list.has_previous %}
+        <li><a href="?page={{ school_list.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">上一页</span></a></li>
+    {% else %}
+            <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">上一页</span></a></li>
+    {% endif %}
+{#  disabled是当你的按钮不满足的时候不可以点击了#}
+    {% for i in pageRange %}
+         {% if current_num == i %}
+          <li class="active"><a href="?page={{ i }}">{{ i }}</a></li>
+
+         {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+         {% endif %}
+    {% endfor %}
+
+    {% if school_list.has_next %}
+        <li><a href="?page={{ school_list.next_page_number }}" aria-label="Next"><span aria-hidden="true">下一页</span></a></li>
+    {% else %}
+            <li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">下一页</span></a></li>
+    {% endif %}
+
+  <li>
+      <a href="?page={{ last }}" aria-label="Next">
+        <span aria-hidden="true">最后一页</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+</div>
+</div>
+{% endblock %}
