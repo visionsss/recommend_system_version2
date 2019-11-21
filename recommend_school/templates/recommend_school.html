@@ -9,5 +9,26 @@
 
 {# 替换内容 #}
 {% block content %}
-
+<div class="container">
+    <table class="table table-bordered table-hover table-striped" width="300px">
+    <th>学校</th>
+    <th>省份</th>
+    <th>考生类型</th>
+    <th>年份</th>
+    <th>批次</th>
+    <th>平均分</th>
+    <th>最低分</th>
+    {% for foo in school %}
+        <tr>
+            <td><a href="/school_info/{{ foo.school_name }}">{{ foo.school_name }}</a></td>
+            <td>{{ foo.school_province }}</td>
+            <td>{{ foo.student_type }}</td>
+            <td>{{ foo.year }}</td>
+            <td>{{ foo.epoch }}</td>
+            <td>{{ foo.score_avg }}</td>
+            <td>{{ foo.score_low }}</td>
+        </tr>
+    {% endfor %}
+</table>
+    </div>
 {% endblock %}

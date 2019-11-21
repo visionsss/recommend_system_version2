@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from . import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from . import forms
@@ -7,6 +7,9 @@ from django.views.decorators.csrf import csrf_exempt    # 取消csrf
 
 @csrf_exempt
 def school_list(request):
+    if not request.session.get('is_login', None):
+        # 没登录去登录
+        return redirect("/login/")
     if request.method == 'POST':
         request.session['school_name'] = request.POST.get('school_name')
         request.session['province'] = request.POST.get('province')

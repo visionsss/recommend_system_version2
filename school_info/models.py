@@ -12,3 +12,5 @@ class School_info(models.Model):
     school_belong = models.CharField(max_length=256)
     school_type1 = models.CharField(max_length=256)
     school_type2 = models.CharField(max_length=256)
+
+

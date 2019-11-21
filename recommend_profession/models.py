@@ -13,3 +13,9 @@ class Profession(models.Model):
         ordering = ["id"]
         verbose_name = "专业信息"
         verbose_name_plural = "专业信息"
+
+
+class Profession_Hot(models.Model):
+    profession_name = models.CharField(max_length=256)
+    profession_hot = models.CharField(max_length=256)
+    profession_type = models.CharField(max_length=256)
