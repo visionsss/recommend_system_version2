@@ -44,7 +44,7 @@ class StudentInfoForm(forms.Form):
         ('female', "女"),
     )
     province_gender = (
-        ('GuangDong', '广东'),
+        ('广东', '广东'),
     )
     subject_gender = (
         ('science', '理科'),
