@@ -8,7 +8,7 @@ from . import models
 @csrf_exempt
 def index(request):
     title = '首页'
-    return render(request, 'base.html', locals())
+    return render(request, 'index.html', locals())
 
 
 @csrf_exempt

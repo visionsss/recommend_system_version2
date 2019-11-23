@@ -15,7 +15,10 @@ def recommend_school(request):
         else:
             student_type = '理科'
         print(score)
-        school = models.re_school.objects.filter(score_low__range=(score - 30, score + 30), student_type=student_type)
+        for i in range(30, 600, 10):
+            school = models.re_school.objects.filter(score_low__range=(score - i, score + i), student_type=student_type)
+            if len(school) > 10:
+                break
         print(school)
     except:
         pass
