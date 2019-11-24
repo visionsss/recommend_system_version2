@@ -1,6 +1,8 @@
 # recommend_system_version2
 高考志愿推荐系统
 
+持续更新中·······
+
 ## recommend_profession
 
 推荐专业
