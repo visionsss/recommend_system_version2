@@ -40,15 +40,15 @@ class LoginForm(forms.Form):
 
 class StudentInfoForm(forms.Form):
     sex_gender = (
-        ('male', "男"),
-        ('female', "女"),
+        ('男', "男"),
+        ('女', "女"),
     )
     province_gender = (
         ('广东', '广东'),
     )
     subject_gender = (
-        ('science', '理科'),
-        ('art', '文科'),
+        ('理科', '理科'),
+        ('文科', '文科'),
     )
     sex = forms.ChoiceField(label='性别', choices=sex_gender)
     province = forms.ChoiceField(label='省份', choices=province_gender)

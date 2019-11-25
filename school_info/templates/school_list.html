@@ -11,7 +11,7 @@
 {% block content %}
 <div class="col-sm-offset-1" style="width: 80%">
 <div id="select_school">
-    <form action="" method="post" novalidate>
+    <form class="form-inline" action="" method="post" novalidate>
         {% csrf_token %}
         {% for foo in school_form %}
             <div class="form-group">
@@ -19,12 +19,12 @@
                 {{ foo }}
             </div>
         {% endfor %}
-        <button type="submit" class="btn btn-primary pull-left">提交</button>
+        <button type="submit" class="btn btn-primary">提交</button>
     </form>
 </div>
 <table class="table table-bordered table-hover table-striped ">
     <tr><th>院校名称</th><th>院校排名</th><th>省份</th><th>城市</th><th>985</th><th>211</th><th>自招</th>
-    <th>院校隶属</th><th>院校举办</th><th>办学类型</th></tr>
+    <th>考生类别</th><th>录取批次</th><th>2018年最低分</th></tr>
     {% for school in school_list %}
     <tr>
         <td><a href="/school_info/{{ school.school_name }}">{{ school.school_name }}</a></td>
@@ -34,9 +34,9 @@
         <td>{{ school.type_985 }}</td>
         <td>{{ school.type_211 }}</td>
         <td>{{ school.type_self }}</td>
-        <td>{{ school.school_belong }}</td>
-        <td>{{ school.school_type1 }}</td>
-        <td>{{ school.school_type2 }}</td>
+        <td>{{ school.student_type }}</td>
+        <td>{{ school.epoch }}</td>
+        <td>{{ school.lowest_score }}</td>
     </tr>
     {% endfor %}
 </table>

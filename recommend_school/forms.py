@@ -49,5 +49,5 @@ class school_form(forms.Form):
     )
     school_name = forms.CharField(label="院校名称", empty_value='')
     province = forms.ChoiceField(label='省份', choices=province_gender)
-    student_type = forms.ChoiceField(label='考生类别', choices=student_gender)
+    # student_type = forms.ChoiceField(label='考生类别', choices=student_gender)
     epoch = forms.ChoiceField(label='录取批次', choices=epoch_gender)

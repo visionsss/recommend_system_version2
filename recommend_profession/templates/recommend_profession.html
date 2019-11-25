@@ -22,11 +22,11 @@
                     {#console.log(count, count%2)#}
                     if(count%col === 0){
                         message = message + '<tr height="30px">';
-                        message = message + '<td><a target="_blank" href="https://baike.baidu.com/item/'+y[i]['fields']['profession_name']+'专业">'
+                        message = message + '<td><a target="_blank" href="../profession/'+y[i]['fields']['profession_name']+'专业">'
                     +y[i]['fields']['profession_name'] + '</a></td>';
                     }
                     else {
-                        message = message + '<td><a target="_blank" href="https://baike.baidu.com/item/'+y[i]['fields']['profession_name']+'专业">'
+                        message = message + '<td><a target="_blank" href="../profession/'+y[i]['fields']['profession_name']+'专业">'
                     +y[i]['fields']['profession_name'] + '</a></td>';
                     }
                     if(count%col === col-1){
@@ -68,9 +68,12 @@
         </div>
         <div class="container-fluid col-sm-3">
             <h4>专业推荐</h4>
+        {% if have_done %}
+            <h4>请完成<a href="../analysis/">性格测试</a>，专业推荐效果更佳</h4>
+        {% endif %}
             <li>
                 {% for foo in profession_hot %}
-                    <a href="https://baike.baidu.com/item/{{ foo.profession_name }}"><ul>{{ foo.profession_name }}</ul></a>
+                    <a target="_blank" href="../profession/{{ foo.profession_name }}专业"><ul>{{ foo.profession_name }}</ul></a>
                 {% endfor %}
 
             </li>

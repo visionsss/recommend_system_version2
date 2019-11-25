@@ -20,10 +20,13 @@ def login(request):
         login_form = forms.LoginForm(request.POST)
         if login_form.is_valid():  # 判断是否填写完成
             user = login_form.cleaned_data  # 清理数据
+            user_info = models.User.objects.get(username=user['username'])
             request.session['is_login'] = True
             request.session['username'] = user['username']
             request.session['school_name'] = ''
             request.session['province'] = ''
+            request.session['student_type'] = user_info.subject
+            request.session['epoch'] = '本科批'
             return redirect('/')
         else:
             # 获取全局的error信息,只显示第一个

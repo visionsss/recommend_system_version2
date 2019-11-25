@@ -13,7 +13,11 @@ def school_list(request):
     if request.method == 'POST':
         request.session['school_name'] = request.POST.get('school_name')
         request.session['province'] = request.POST.get('province')
+        request.session['student_type'] = request.POST.get('student_type')
+        request.session['epoch'] = request.POST.get('epoch')
     school_list = models.School_info.objects.filter(school_name__contains=request.session['school_name'],
+                                                    student_type__contains=request.session['student_type'],
+                                                    epoch__contains=request.session['epoch'],
                                                     school_province__contains=request.session['province'])
     title = '普通院校信息'
     paginator = Paginator(school_list, 10)  # 设置每一页显示几条  创建一个panginator对象
@@ -38,7 +42,9 @@ def school_list(request):
     else:
         pageRange = range(1, last)  # 正常分配
     school_form = forms.school_form(initial={
-        'school_name': request.session['school_name'], 'province': request.session['province']})
+        'school_name': request.session['school_name'], 'province': request.session['province'],
+        'student_type': request.session['student_type'], 'epoch': request.session['epoch']
+    })
     return render(request, 'school_list.html', locals())
 
 
