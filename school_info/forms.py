@@ -51,3 +51,9 @@ class school_form(forms.Form):
     province = forms.ChoiceField(label='省份', choices=province_gender)
     student_type = forms.ChoiceField(label='考生类别', choices=student_gender)
     epoch = forms.ChoiceField(label='录取批次', choices=epoch_gender)
+
+
+class one_school_form(forms.Form):
+    profession_name = forms.CharField(label="专业名称", empty_value='')
+    year = forms.ChoiceField(label='年份', choices=((2014, 2014), (2015, 2015),))
+    epoch = forms.ChoiceField(label='录取批次')

@@ -23,12 +23,15 @@ def recommend_profession(request):
     type1 = message.iloc[:, 1].unique()
     pro_js = serializers.serialize("json", models.Profession.objects.all())
     p_type = user.personality_type
-    profession_hot1 = models.Profession.objects.filter(profession_type__contains=p_type[0])
-    profession_hot2 = models.Profession.objects.filter(profession_type__contains=p_type[1])
-    profession_hot3 = models.Profession.objects.filter(profession_type__contains=p_type[2])
-    profession_hot = list(set(profession_hot1) | set(profession_hot1) | set(profession_hot1))
-    profession_hot.sort()           # 排序
-    profession_hot = profession_hot[: 20]   # 取前20个
+    try:
+        profession_hot1 = models.Profession.objects.filter(profession_type__contains=p_type[0])
+        profession_hot2 = models.Profession.objects.filter(profession_type__contains=p_type[1])
+        profession_hot3 = models.Profession.objects.filter(profession_type__contains=p_type[2])
+        profession_hot = list(set(profession_hot1) | set(profession_hot1) | set(profession_hot1))
+        profession_hot.sort()           # 排序
+        profession_hot = profession_hot[: 20]   # 取前20个
+    except:
+        profession_hot = models.Profession.objects.filter()
     return render(request, 'recommend_profession.html', locals())
 
 

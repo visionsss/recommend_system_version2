@@ -3,6 +3,26 @@
 
 持续更新中·······
 
+网页效果图
+
+![Image text](./READMEPIC/register.png)
+
+![Image text](./READMEPIC/login.png)
+
+![Image text](./READMEPIC/index.png)
+
+![Image text](./READMEPIC/student_info.png)
+
+![Image text](./READMEPIC/school_info.png)
+
+![Image text](./READMEPIC/recommend_school.png)
+
+![Image text](./READMEPIC/recommend_profession.png)
+
+
+
+
+
 ## recommend_profession
 
 推荐专业

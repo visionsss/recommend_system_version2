@@ -50,5 +50,11 @@ def school_list(request):
 
 @csrf_exempt
 def one_school(request, school_name):
+    if not request.session.get('is_login', None):
+        # 没登录去登录
+        return redirect("/login/")
     title = school_name
+    science_message = models.One_School.objects.filter(school_name=school_name, student_type='理科')
+    art_message = models.One_School.objects.filter(school_name=school_name, student_type='文科')
+    one_school_form = forms.one_school_form()
     return render(request, 'one_school.html', locals())
