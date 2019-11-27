@@ -9,6 +9,13 @@
 
 {# 替换内容 #}
 {% block content %}
+<script type="text/javascript">
+function reload() {
+    setTimeout(function(){
+        location.reload(true);
+    }, 500);
+}
+</script>
 <script>
         function getProfessionDetail(x)
         {
@@ -22,11 +29,11 @@
                     {#console.log(count, count%2)#}
                     if(count%col === 0){
                         message = message + '<tr height="30px">';
-                        message = message + '<td><a target="_blank" href="../profession/'+y[i]['fields']['profession_name']+'专业">'
+                        message = message + '<td><a onclick="reload()" target="_blank" href="../profession/'+y[i]['fields']['profession_name']+'专业">'
                     +y[i]['fields']['profession_name'] + '</a></td>';
                     }
                     else {
-                        message = message + '<td><a target="_blank" href="../profession/'+y[i]['fields']['profession_name']+'专业">'
+                        message = message + '<td><a onclick="reload()" target="_blank" href="../profession/'+y[i]['fields']['profession_name']+'专业">'
                     +y[i]['fields']['profession_name'] + '</a></td>';
                     }
                     if(count%col === col-1){

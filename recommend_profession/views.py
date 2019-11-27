@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from . import models
+from django.db.models import Max
 from user.models import User
 import pandas as pd
 from django.core import serializers
@@ -32,6 +33,16 @@ def recommend_profession(request):
         profession_hot = profession_hot[: 20]   # 取前20个
     except:
         profession_hot = models.Profession.objects.filter()
+    try:
+        profession_hot_recommend = models.Profession.objects.filter(type2=request.session['profession_type2'])
+        add = int(profession_hot[0].profession_hot)
+        for i in range(len(profession_hot_recommend)):
+            profession_hot_recommend[i].profession_hot = int(profession_hot_recommend[i].profession_hot) + add
+        profession_hot = list(set(profession_hot) | set(profession_hot_recommend))
+
+    except:
+        print('专业个性化推荐失败')
+    profession_hot.sort()  # 排序
     return render(request, 'recommend_profession.html', locals())
 
 
@@ -41,4 +52,5 @@ def profession(request, profession_name):
     p.profession_hot = int(p.profession_hot) + 1
     p.save()
     print(profession_name, '热度+1')
+    request.session['profession_type2'] = p.type2
     return redirect(f'https://baike.baidu.com/item/{profession_name}')
