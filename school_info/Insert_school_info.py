@@ -60,12 +60,23 @@ import sqlite3
 import pandas as pd
 import numpy as np
 from glob import glob
+import base64
 
 conn = sqlite3.connect("../db.sqlite3")
 cursor = conn.cursor()
 path = r'D:\Note\大四\高考推荐系统\学校分数线折线图2014-2018\*'
 for pic in glob(path):
-    pass
+    school_name = pic.split('\\')[-1].replace('分数线.jpg', '')
+    with open(pic, 'rb') as f:
+        print(school_name)
+        res = base64.b64encode(f.read())
+        sql = f"update school_info_one_school set pictures = '{res}' where school_name = '{school_name}'"
+        # sql = f"select * from school_info_one_school where school_name='{school_name}'"
+        try:
+            x = cursor.execute(sql)
+        except:
+            print(sql)
+            print('error')
 #
 #     sql = "insert into school_info_school_score values ('%d','%s','%s')" \
 #           % (
