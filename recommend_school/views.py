@@ -25,6 +25,7 @@ def recommend_school(request):
         if len(schools) > 10:
             break
     schools = sorted(schools)
+    print(request.session['student_type'])
     school_form = forms.school_form(initial={
         'school_name': request.session['school_name'], 'province': request.session['province'],
         'student_type': request.session['student_type'], 'epoch': request.session['epoch']

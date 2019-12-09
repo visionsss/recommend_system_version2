@@ -88,4 +88,5 @@ def student_info(request):
             user.score = student_form.cleaned_data['score']
             user.save()
             message = '修改成功'
+            request.session['student_type'] = student_form.cleaned_data['subject']
     return render(request, 'student_info.html', locals())
