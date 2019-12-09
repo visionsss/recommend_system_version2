@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from . import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from . import forms
+from django.core import serializers
+from . import views_function
 from django.views.decorators.csrf import csrf_exempt    # 取消csrf
 
 
@@ -53,8 +55,19 @@ def one_school(request, school_name):
     if not request.session.get('is_login', None):
         # 没登录去登录
         return redirect("/login/")
+    profession_name = ''
+    if request.method == 'POST':
+        one_school_from = forms.one_school_form(request.POST)
+        if one_school_from.is_valid():  # 判断是否填写完成
+            x = one_school_from.cleaned_data  # 清理数据
+            profession_name = x['profession_name']
+
     title = school_name
-    science_message = models.One_School.objects.filter(school_name=school_name, student_type='理科')
-    art_message = models.One_School.objects.filter(school_name=school_name, student_type='文科')
+    science_message = models.One_School.objects.filter(profession_name__contains=profession_name, school_name=school_name, student_type='理科')
+    art_message = models.One_School.objects.filter(profession_name__contains=profession_name, school_name=school_name, student_type='文科')
     one_school_form = forms.one_school_form()
+    province = models.School_info.objects.filter(school_name=school_name)[0].school_province
+    if province != '广东':
+        province = '全国'
+    recommend_school_list = views_function.running(school_name, province=province)
     return render(request, 'one_school.html', locals())

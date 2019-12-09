@@ -27,6 +27,16 @@ class One_School(models.Model):
     lowest_score = models.CharField(max_length=256)
     lowest_rank = models.CharField(max_length=256)
     epoch = models.CharField(max_length=256)
+    pictures = models.ImageField(upload_to='img')
 
     def __str__(self):
-        print(self.school_name)
+        return self.school_name
+
+
+class school_score(models.Model):
+    school_name = models.CharField(max_length=256)
+    score = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.school_name + self.score
+

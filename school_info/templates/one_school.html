@@ -27,13 +27,12 @@
                         <div id="select_message_art">
                             <form class="form-inline" action="" method="post" novalidate>
                                 {% csrf_token %}
-                                {% for foo in school_form %}
+                                {% for foo in one_school_form %}
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">{{ foo.label }}</label>
                                         {{ foo }}
                                     </div>
                                 {% endfor %}
-                                <button type="submit" class="btn btn-primary">提交</button>
+                                <button type="submit" class="btn btn-primary">查询</button>
                             </form>
                         </div>
                         <table class="table table-bordered table-hover table-striped ">
@@ -57,9 +56,8 @@
                         <div id="select_message_science">
                             <form class="form-inline" action="" method="post" novalidate>
                                 {% csrf_token %}
-                                {% for foo in school_form %}
+                                {% for foo in one_school_form %}
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">{{ foo.label }}</label>
                                         {{ foo }}
                                     </div>
                                 {% endfor %}
@@ -70,7 +68,7 @@
                             <tr><th>专业</th><th>年份</th><th>最高分</th><th>平均分</th><th>最低分</th><th>最低排名</th><th>批次</th>
                             {% for school in science_message %}
                             <tr>
-                                <td>{{ school.profession_name }}</td>
+                                <td width="25%">{{ school.profession_name }}</td>
                                 <td>{{ school.year }}</td>
                                 <td>{{ school.top_score }}</td>
                                 <td>{{ school.avg_score }}</td>
@@ -87,30 +85,10 @@
 		</div>
 		<div class="col-md-4">
 			<ul>
-				<li>
-					新闻资讯
-				</li>
-				<li>
-					体育竞技
-				</li>
-				<li>
-					娱乐八卦
-				</li>
-				<li>
-					前沿科技
-				</li>
-				<li>
-					环球财经
-				</li>
-				<li>
-					天气预报
-				</li>
-				<li>
-					房产家居
-				</li>
-				<li>
-					网络游戏
-				</li>
+				{% for recommend_school in recommend_school_list %}
+                    <a href="../{{ recommend_school }}"><li>{{ recommend_school }}</li></a>
+				{% endfor %}
+
 			</ul>
 		</div>
 	</div>

@@ -7,6 +7,9 @@ class Profession(models.Model):
     profession_name = models.CharField(max_length=256)
     profession_hot = models.CharField(max_length=256, blank=True, null=True)
     profession_type = models.CharField(max_length=256, blank=True, null=True)
+    show1 = models.CharField(max_length=2048)
+    show2 = models.CharField(max_length=2048)
+    show3 = models.CharField(max_length=2048)
 
     def __str__(self):
         return self.profession_name + self.profession_hot

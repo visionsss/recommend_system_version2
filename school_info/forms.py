@@ -55,5 +55,3 @@ class school_form(forms.Form):
 
 class one_school_form(forms.Form):
     profession_name = forms.CharField(label="专业名称", empty_value='')
-    year = forms.ChoiceField(label='年份', choices=((2014, 2014), (2015, 2015),))
-    epoch = forms.ChoiceField(label='录取批次')
