@@ -1,27 +1,62 @@
+
+
 # recommend_system_version2
+
 高考志愿推荐系统
 
-持续更新中·······
-
 网页效果图
+
+登录注册界面
 
 ![Image text](./READMEPIC/register.png)
 
 ![Image text](./READMEPIC/login.png)
 
+首页~为了避免首页无东西放，我就放了几张图片
+
 ![Image text](./READMEPIC/index.png)
+
+个人信息修改,修改文理科和高考分数后，后续相应的学校推荐会发生改变.
 
 ![Image text](./READMEPIC/student_info.png)
 
+问卷调查/性格测试，根据测试结果，给用户提供相关的专业。
+
+ ![Image text](./READMEPIC/test1.png) 
+
+ ![Image text](./READMEPIC/test2.png)
+
+ 学校信息查询。点进每所学校会显示学校相关的信息以及右侧推荐该学校相似度类似的学校。
+
 ![Image text](./READMEPIC/school_info.png)
 
+如果是广东省内的学校就推荐广东省内相似的学校。10(比广州大学评分高)+10(比广州大学评分低)
+
+![Image text](./READMEPIC/one_school.png)
+
+
+
+ 如果是广东省外的学校就推荐全国相似的学校。10(比清华大学评分高，可能没有)+10(比广州大学评分低)
+
+![Image text](./READMEPIC/school_info2.png)
+
+
+
+学校推荐，根据个人信息的高考分数推荐相关的学校。
+
 ![Image text](./READMEPIC/recommend_school.png)
+
+根据问卷调查中的人格类型筛选符合的专业，根据专业热度排名，如果点击哲学这一专业后，与哲学相关的专业就会出现在专业推荐的表里面。
 
 ![Image text](./READMEPIC/recommend_profession.png)
 
 
 
 
+
+
+
+Django笔记~写给自己看的，想学去查中文文档。
 
 ## recommend_profession
 
