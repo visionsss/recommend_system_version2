@@ -25,7 +25,8 @@ SECRET_KEY = '#x4-omgwgbqheoo*0nm8q%k^_46(e^4kt7zbske2ue=!(k=2tv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# 修改此处可局域网访问，查看电脑ip，cmd输入ipconfig IPV4的地址就是你的IP：192.168.137.1
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

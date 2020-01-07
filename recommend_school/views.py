@@ -15,17 +15,17 @@ def recommend_school(request):
         # request.session['student_type'] = request.POST.get('student_type')
         request.session['epoch'] = request.POST.get('epoch')
     user = User.objects.get(username=request.session['username'])
+    score = user.score - 10
     for i in range(30, 600, 10):
         schools = models.School_info.objects.filter(
             school_name__contains=request.session['school_name'],
             student_type__contains=request.session['student_type'],
             epoch__contains=request.session['epoch'],
             school_province__contains=request.session['province'],
-            lowest_score__range=(user.score - i, user.score + i), student_type=user.subject)
-        if len(schools) > 10:
+            lowest_score__range=(score - i, score + i), student_type=user.subject)
+        if len(schools) > 12:
             break
-    schools = sorted(schools)
-    print(request.session['student_type'])
+    schools = sorted(schools)[len(schools)//2-5: len(schools)//2+5]
     school_form = forms.school_form(initial={
         'school_name': request.session['school_name'], 'province': request.session['province'],
         'student_type': request.session['student_type'], 'epoch': request.session['epoch']

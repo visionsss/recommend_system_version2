@@ -20,7 +20,7 @@ class User(models.Model):
     sex = models.CharField(max_length=32, choices=sex_gender, default="男")
     province = models.CharField(max_length=64, choices=province_gender, default="广东")
     subject = models.CharField(max_length=64, choices=subject_gender, default="理科")
-    score = models.IntegerField(default=0)
+    score = models.IntegerField(default=500)
     personality_type = models.CharField(max_length=32, default=0)
     c_time = models.DateTimeField(auto_now_add=True)
 

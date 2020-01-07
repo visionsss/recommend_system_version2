@@ -36,10 +36,10 @@
                             </form>
                         </div>
                         <table class="table table-bordered table-hover table-striped ">
-                            <tr><th>专业</th><th>年份</th><th>最高分</th><th>平均分</th><th>最低分</th><th>最低排名</th><th>批次</th>
+                            <tr><th width="25%">专业</th><th>年份</th><th>最高分</th><th>平均分</th><th>最低分</th><th>最低排名</th><th>批次</th>
                             {% for school in art_message %}
                             <tr>
-                                <td>{{ school.profession_name }}</td>
+                                <td width="25%">{{ school.profession_name }}</td>
                                 <td>{{ school.year }}</td>
                                 <td>{{ school.top_score }}</td>
                                 <td>{{ school.avg_score }}</td>
@@ -65,7 +65,7 @@
                             </form>
                         </div>
 						<table class="table table-bordered table-hover table-striped ">
-                            <tr><th>专业</th><th>年份</th><th>最高分</th><th>平均分</th><th>最低分</th><th>最低排名</th><th>批次</th>
+                            <tr><th width="25%">专业</th><th>年份</th><th>最高分</th><th>平均分</th><th>最低分</th><th>最低排名</th><th>批次</th>
                             {% for school in science_message %}
                             <tr>
                                 <td width="25%">{{ school.profession_name }}</td>

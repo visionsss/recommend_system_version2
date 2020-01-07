@@ -46,7 +46,8 @@ def recommend_profession(request):
         profession_hot_recommend1 = models.Profession.objects.filter(type1=request.session['profession_type1'])
         profession_hot_recommend2 = models.Profession.objects.filter(type2=request.session['profession_type2'])
         add = int(profession_hot[0].profession_hot)//2
-        profession_hot = list(set(list(profession_hot) + list(profession_hot_recommend1) + list(profession_hot_recommend2)))
+        profession_hot = list(set(list(profession_hot) + list(profession_hot_recommend1) +
+                                  list(profession_hot_recommend2)))
         for i, pro in enumerate(profession_hot):
             if pro.type1 == request.session['profession_type1']:
                 pro.profession_hot = int(pro.profession_hot) + add

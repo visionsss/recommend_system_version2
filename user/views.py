@@ -24,7 +24,7 @@ def login(request):
             request.session['is_login'] = True
             request.session['username'] = user['username']
             request.session['school_name'] = ''
-            request.session['province'] = ''
+            request.session['province'] = user_info.province
             request.session['student_type'] = user_info.subject
             request.session['epoch'] = '本科批'
             return redirect('/')
