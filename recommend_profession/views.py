@@ -12,37 +12,45 @@ def recommend_profession(request):
     if not request.session.get('is_login', None):
         # 如果本来就未登录，也就没有信息一说，跳去登录界面
         return redirect("/login/")
+
     user = User.objects.get(username=request.session.get('username'))
+    # have_done是判断用户有无完成问卷调查
     have_done = True
     if user.personality_type != '0':
         have_done = None
+
     title = '推荐专业'
     message = models.Profession.objects.values_list()
     s = models.Profession.objects.values('type1').distinct()
-
     message = pd.DataFrame(message)
     type1 = message.iloc[:, 1].unique()
     pro_js = serializers.serialize("json", models.Profession.objects.all())
     p_type = user.personality_type
+
+    # 完成问卷调查的考生，过滤掉不符合其性格的专业
+    # 未完成问卷调查的同学，不过滤
     try:
         profession_hot1 = models.Profession.objects.filter(profession_type__contains=p_type[0])
         profession_hot2 = models.Profession.objects.filter(profession_type__contains=p_type[1])
         profession_hot3 = models.Profession.objects.filter(profession_type__contains=p_type[2])
-        profession_hot = list(set(profession_hot1) | set(profession_hot1) | set(profession_hot1))
+        profession_hot = list(set(profession_hot1) | set(profession_hot2) | set(profession_hot3))
         profession_hot.sort()           # 排序
         profession_hot = profession_hot[: 20]   # 取前20个
     except:
         profession_hot = models.Profession.objects.filter()
+
     try:
         profession_hot_recommend = models.Profession.objects.filter(type2=request.session['profession_type2'])
         add = int(profession_hot[0].profession_hot)
         for i in range(len(profession_hot_recommend)):
             profession_hot_recommend[i].profession_hot = int(profession_hot_recommend[i].profession_hot) + add
         profession_hot = list(set(profession_hot) | set(profession_hot_recommend))
-
     except:
         print('专业个性化推荐失败')
+        profession_hot = list(models.Profession.objects.filter())
+
     profession_hot.sort()  # 排序
+    profession_hot = profession_hot[:20]
     return render(request, 'recommend_profession.html', locals())
 
 
