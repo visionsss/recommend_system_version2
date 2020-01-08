@@ -16,6 +16,14 @@ class School_info(models.Model):
     def __lt__(self, other):
         return self.lowest_score > other.lowest_score
 
+    def __str__(self):
+        return self.school_name
+
+    class Meta:
+        ordering = ["id"]
+        verbose_name = "学校基本信息"
+        verbose_name_plural = "学校基本信息"
+
 
 class One_School(models.Model):
     school_name = models.CharField(max_length=256)
@@ -32,6 +40,11 @@ class One_School(models.Model):
     def __str__(self):
         return self.school_name
 
+    class Meta:
+        ordering = ["id"]
+        verbose_name = "学校详细信息"
+        verbose_name_plural = "学校详细信息"
+
 
 class school_score(models.Model):
     school_name = models.CharField(max_length=256)
@@ -40,3 +53,7 @@ class school_score(models.Model):
     def __str__(self):
         return self.school_name + self.score
 
+    class Meta:
+        ordering = ["id"]
+        verbose_name = "学校分数"
+        verbose_name_plural = "学校分数"
